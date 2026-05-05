@@ -1,6 +1,6 @@
 # Note
-This project does not redistribute meshes or textures
-The assets belong to their respective owners
+This project does not redistribute meshes or textures.
+The assets belong to their respective owners.
 
 ## Pull requests are welcome!
 
