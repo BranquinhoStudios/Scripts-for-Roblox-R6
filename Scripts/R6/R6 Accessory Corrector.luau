@@ -17,10 +17,11 @@ local function ConvertAccessory(accessory: Accessory)
 	local handle = accessory:FindFirstChild("Handle")
 	if handle and handle:IsA("BasePart") then
 		local specialMesh = handle:FindFirstChildWhichIsA("SpecialMesh")
+        local handleMesh
 		
 		-- Set the mesh configuration obteined from the special mesh
 		local success, msg = pcall(function(...)
-			local handleMesh = AssetService:CreateMeshPartAsync(
+			handleMesh = AssetService:CreateMeshPartAsync(
 				specialMesh.MeshId, -- Mesh ID
 				{
 					CollisionFidelity = Enum.CollisionFidelity.Default
