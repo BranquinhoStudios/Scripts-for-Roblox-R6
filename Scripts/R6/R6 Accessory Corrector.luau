@@ -19,14 +19,21 @@ local function ConvertAccessory(accessory: Accessory)
 		local specialMesh = handle:FindFirstChildWhichIsA("SpecialMesh")
 		
 		-- Set the mesh configuration obteined from the special mesh
-		local handleMesh = AssetService:CreateMeshPartAsync(
-			specialMesh.MeshId, -- Mesh ID
-			{
-				CollisionFidelity = Enum.CollisionFidelity.Default
-			}
-		)
-		handleMesh.TextureID = specialMesh.TextureId
-		handleMesh.Name = "Handle"
+		local success, msg = pcall(function(...)
+			local handleMesh = AssetService:CreateMeshPartAsync(
+				specialMesh.MeshId, -- Mesh ID
+				{
+					CollisionFidelity = Enum.CollisionFidelity.Default
+				}
+			)
+			handleMesh.TextureID = specialMesh.TextureId
+			handleMesh.Name = "Handle"
+		end)
+		
+		if not success then
+			warn("Error while converting acessory " .. accessory.Name .. ": " .. msg)
+			return nil
+		end
 		
 		-- Pick all instances from the original acessory handle, and
 		-- apply to the new handle
